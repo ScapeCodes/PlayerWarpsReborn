@@ -1,0 +1,147 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                     SETTINGS                         | #
+# +------------------------------------------------------+ #
+############################################################
+
+settings:
+  default-category: 'other'
+  categories: true # if false, gui will just open "all" warps menu.
+  main-command-gui: false # if true, /<command> will open the gui rather than showing the help message.
+  delays:
+    teleport:
+      enable: true
+      interval: 5 # how many seconds until it will teleport this player to the location. *Will stop when moving*
+  disabled-worlds:
+    create:
+      enable: true
+      worlds:
+        - 'exampleworld1'
+        - 'exampleworld2'
+    set:
+      enable: true
+      worlds:
+        - 'exampleworld1'
+        - 'exampleworld2'
+    visit:
+      enable: true
+      worlds:
+        - 'exampleworld1'
+        - 'exampleworld2'
+  economy:
+    hook: 'VAULT' # [VAULT, PLAYERPOINTS]
+    visit:
+      enable: true
+      amount: 100 # this would cost $100 to visit a warp.
+      free-for-owner: true # if false, the warp owner would have to pay.
+    create:
+      enable: false
+      amount: 50 # this would cost $50 to create a warp.
+    safe-detector:
+      danger-blocks: # detect these blocks in a 5 block radius around the location
+        - 'WEB'
+        - 'OBSIDIAN'
+        - 'LAVA'
+        - 'DISPENSER'
+        - 'BEDROCK'
+      danger-mobs: true # should mobs trigger "unsafe" if mobs are in the radius?
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     MESSAGES                         | #
+# +------------------------------------------------------+ #
+############################################################
+
+messages:
+  prefix: '&#009dff&lPWR &8&l➟'
+  reloaded: '%prefix% &#80ceffReloaded configurations.'
+  no-permission: '%prefix% &cYou do not have permission. &7(%permission%)'
+  safe: '&a&lSAFE'
+  unsafe: '&c&lNOT SAFE'
+  forced-saved-all-warps: '%prefix% &#80ceffForce saved all warps.'
+  teleporting: '%prefix% &#80ceffTeleporting...'
+  cancelled-teleport: '%prefix% &cTeleportation cancelled due to movement.'
+  interrupted-teleport: '%prefix% &cTeleportation was interrupted.'
+  slow-down-teleporting: '%prefix% &cPlease slow down, you''re already being teleported to a warp.'
+  timer-teleport: '%prefix% &#80ceffYou will be teleported in %interval% seconds.'
+  does-not-exist: '%prefix% &cThis playerwarp does not exist!'
+  already-exist: '%prefix% &cThis playerwarp already exists!'
+  created-warp: '%prefix% &#80ceffCreated Warp & set location!'
+  removed-warp: '%prefix% &#80ceffSuccessfully removed %warp% warp!'
+  has-password: '%prefix% &cThis warp has a password enabled. /pw <warp> <password>'
+  limit-reached: '%prefix% &cYou have reached your warp limit. &7(%limit%)'
+  player-limit-reached: '%prefix% &cThis player has reached their warp limit.'
+  invalid-password: '%prefix% &cThe warp password is incorrect!'
+  not-owner: 'prefix &cOnly the owner of the warp can run this action!'
+  is-owner: 'prefix &cThis is already the owner of the warp!'
+  updated-location: '%prefix% &#80ceffUpdated location of your warp!'
+  updated-value: '%prefix% &#80ceffUpdated %key% to: %value%'
+  invalid-category: '%prefix% &cInvalid Category. &7%categories%'
+  invalid-material-icon: '%prefix% &cNo material found with this name!'
+  player-never-played: '%prefix% &cThis player has never played.'
+  insufficient-funds-visit: '%prefix% &cInsufficient funds. You need $%amount% to visit this warp.'
+  insufficient-funds-create: '%prefix% &cInsufficient funds. You need $%amount% to create a warp.'
+  disabled-worlds:
+    create: '%prefix% &cYou can not create warps in this world.'
+    set: '%prefix% &cYou can not set warp locations in this world.'
+    visit: '%prefix% &cYou can not visit warps in this world.'
+  help-message:
+    - '&8&m-----------&8&l[ &#009dff&lPWR &8&l]&8&m-----------'
+    - '&#80ceff/pwarp &7- &fShows this message.'
+    - '&#80ceff/pwarp <warp> | [password?] &7- &fTeleports you to a warp.'
+    - '&#80ceff/pwarp set <warp> &7- &fSets/Creates a warp to your location.'
+    - '&#80ceff/pwarp setdesc <warp> <desc> &7- &fSets description for your warp.'
+    - '&#80ceff/pwarp setpassword <warp> <password> &7- &fSets password for your warp.'
+    - '&#80ceff/pwarp setcategory <warp> <category> &7- &fSets category for your warp.'
+    - '&#80ceff/pwarp seticon <warp> <material> &7- &fSets material icon for your warp.'
+    - '&#80ceff/pwarp lock <warp> <true/false> &7- &fLocks/Unlocks your warp.'
+    - '&#80ceff/pwarp password-mode <warp> <true/false> &7- &fWeather or not you want your warp to be password enabled.'
+    - '&#80ceff/pwarp setowner <warp> <player> &7- &fTransfer ownership of your warp.'
+    - '&#80ceff/pwarp rename <warp> <name> &7- &fRaname your warp.'
+    - '&#80ceff/pwarp remove <warp> &7- &fRemoves the warp.'
+    - '&#80ceff/pwarp reload &7- &fReloads the files of PWR.'
+    - '&#80ceff/pwarp list &7- &fLists all the player warps.'
+    - '&8&m-----------&8&l[ &#009dff&lPWR &8&l]&8&m-----------'
+  info-message:
+    - '%prefix% &#80ceffInfo about %warp% warp:'
+    - ''
+    - '&7Owner: &#80ceff%owner%'
+    - '&7Description: &#80ceff%description%'
+    - '&7Rating: &#80ceff%rating%'
+    - '&7Password Mode: &#80ceff%password-mode%'
+    - '&7Locked: &#80ceff%locked%'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Data                           | #
+# +------------------------------------------------------+ #
+############################################################
+
+# make sure you can check your panel database info to make sure everything is correct.
+# Note: There are no extra steps needed for H2 or SQLite.
+data:
+
+  # types: [H2 / SQLITE / MYSQL]
+  type: 'H2'
+
+  # The address for the database server.
+  # - to enable this part, change type to 'MYSQL'
+  # - some hosts can use your domain or server ip.
+  address: 'host'
+  # The standard DB engine port is used by default
+  port: 3306
+  # The name of the database to store tag data in.
+  database: 'database'
+  # Credentials for the database.
+  username: 'user'
+  password: 'pass'
+  useSSL: false
+
+  # connection pool settings.
+  mysql-pool-settings:
+    minimum-idle: 10
+    maximum-pool-size: 20
+    timeouts:
+      idle: 180000
+      connection: 870000000
+      max-lifetime: 300000

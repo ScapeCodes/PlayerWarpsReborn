@@ -1,0 +1,13 @@
+name: PlayerWarpsReborn
+version: '${project.version}'
+main: net.devscape.playerwarpsreborn.PlayerWarpsReborn
+api-version: '1.13'
+depend:
+  - NBTAPI
+softdepend:
+  - Vault
+  - PlaceholderAPI
+
+commands:
+  playerwarpsreborn:
+    aliases: [pwr, pw, playerwarps, pwarps, pwarp]
